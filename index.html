@@ -12,4 +12,172 @@ body{background:#0a0a0f;color:#fff;overflow-x:hidden}
 .nav-inner{display:flex;justify-content:space-between;align-items:center}
 .logo{font-weight:800;font-size:22px;background:linear-gradient(90deg,var(--p1),var(--p2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-links{display:flex;gap:18px}
-.nav-links a{color:#aaa;text-decoration:none;font-size:14px;cursor:pointer;padding:
+.nav-links a{color:#aaa;text-decoration:none;font-size:14px;cursor:pointer;padding:8px 14px;border-radius:20px;transition:.3s}
+.nav-links a.active,.nav-links a:hover{background:#1a1a24;color:#fff}
+.page{display:none;min-height:100vh;padding:90px 5% 40px}
+.page.active{display:block;animation:fade .4s}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:linear-gradient(135deg,#6d28d9,#db2777,#2563eb);border-radius:30px;padding:50px 30px;text-align:center;margin-bottom:30px}
+.hero h1{font-size:42px;font-weight:900;margin-bottom:10px}
+.hero p{opacity:.9;margin-bottom:20px}
+.btn{display:inline-block;padding:12px 28px;border-radius:30px;font-weight:700;text-decoration:none;cursor:pointer;border:none;transition:.3s}
+.btn-green{background:var(--g);color:#000}
+.btn-blue{background:#0ea5e9;color:#fff}
+.card{background:#15151f;border:1px solid #222;border-radius:20px;padding:22px;margin-bottom:18px;transition:.3s}
+.card:hover{border-color:var(--p1);transform:translateY(-4px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.tag{display:inline-block;background:#1f1f2e;padding:4px 10px;border-radius:20px;font-size:12px;color:#a78bfa;margin:4px 4px 0 0}
+input{width:100%;padding:14px;border-radius:12px;border:1px solid #333;background:#0f0f17;color:#fff;margin:10px 0;outline:none}
+input:focus{border-color:var(--p1)}
+.login-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(12px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px}
+.login-box{background:#16161f;border:1px solid #2a2a3a;border-radius:24px;padding:30px;width:100%;max-width:380px;text-align:center}
+.badge{background:linear-gradient(90deg,var(--p1),var(--p2));padding:6px 14px;border-radius:20px;font-size:12px;display:inline-block;margin-bottom:12px}
+.bottom-nav{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);background:#1a1a27;border:1px solid #2a2a3a;border-radius:40px;padding:8px 18px;display:flex;gap:20px;z-index:999}
+.bottom-nav span{cursor:pointer;font-size:14px;opacity:.7}
+.bottom-nav span.active{opacity:1;color:#a78bfa;font-weight:700}
+.bot-status{color:var(--g);font-size:13px;font-weight:600}
+</style>
+</head>
+<body>
+<div id="loginScreen" class="login-overlay">
+  <div class="login-box">
+    <div class="badge">🚀 TEACH WITH ZAIN</div>
+    <h2 style="margin:10px 0">Welcome Back!</h2>
+    <p style="color:#888;font-size:14px;margin-bottom:15px">Login karke courses dekho</p>
+    <input id="email" type="email" placeholder="Email likho">
+    <input id="pass" type="password" placeholder="Password (koi bhi)">
+    <button class="btn btn-green" style="width:100%;margin-top:10px" onclick="doLogin()">Login / Sign Up</button>
+    <p style="color:#666;font-size:12px;margin-top:12px">Email + Password likh ke login dabao, auto account ban jayega</p>
+  </div>
+</div>
+<div class="top-nav">
+  <div class="nav-inner">
+    <div class="logo">Teach With Zain</div>
+    <div class="nav-links">
+      <a id="nav-home" class="active" onclick="showPage('home')">Home</a>
+      <a id="nav-courses" onclick="showPage('courses')">Courses</a>
+      <a id="nav-bots" onclick="showPage('bots')">Bots</a>
+      <a id="nav-about" onclick="showPage('about')">About</a>
+      <a onclick="logout()" style="color:#ff6b6b">Logout</a>
+    </div>
+  </div>
+</div>
+<div id="page-home" class="page active">
+  <div class="hero">
+    <h1>Teach With Zain</h1>
+    <p>Learn • Build • Automate - AI ki duniya me apna future banao</p>
+    <a class="btn btn-green" href="https://wa.me/923705579387" target="_blank">WhatsApp: 03705579387</a>
+    <div style="margin-top:15px">
+      <a class="btn btn-blue" href="https://t.me/Murshad1256" target="_blank">Telegram: @Murshad1256</a>
+    </div>
+    <p style="margin-top:15px;font-size:14px">itxzain1012@gmail.com</p>
+  </div>
+  <div class="grid">
+    <div class="card"><h3>🔥 500+ Students</h3><p style="color:#aaa;margin-top:8px">Already learning automation</p></div>
+    <div class="card"><h3>🤖 10+ Bots Built</h3><p style="color:#aaa;margin-top:8px">WhatsApp, Telegram, AI bots</p></div>
+    <div class="card"><h3>🎯 Practical Learning</h3><p style="color:#aaa;margin-top:8px">No theory, only building</p></div>
+  </div>
+</div>
+<div id="page-courses" class="page">
+  <h2 style="font-size:30px;margin-bottom:20px">🚀 AI Courses</h2>
+  <div class="grid">
+    <div class="card">
+      <span class="tag">Beginner</span><span class="tag">Python</span>
+      <h3 style="margin:10px 0">Python for AI</h3>
+      <p style="color:#aaa;font-size:14px">Python basics se AI tak ka safar. 20 videos, projects ke sath.</p>
+      <button class="btn btn-green" style="margin-top:12px;padding:8px 18px;font-size:14px" onclick="openCourse('Python for AI')">Start Learning</button>
+    </div>
+    <div class="card">
+      <span class="tag">Hot</span><span class="tag">Chatbot</span>
+      <h3 style="margin:10px 0">Chatbot Development</h3>
+      <p style="color:#aaa;font-size:14px">Apna AI chatbot banao jo WhatsApp par jawab de.</p>
+      <button class="btn btn-green" style="margin-top:12px;padding:8px 18px;font-size:14px" onclick="openCourse('Chatbot Development')">Start Learning</button>
+    </div>
+    <div class="card">
+      <span class="tag">Advanced</span><span class="tag">CV</span>
+      <h3 style="margin:10px 0">Computer Vision</h3>
+      <p style="color:#aaa;font-size:14px">Face detection, object tracking, AI camera projects.</p>
+      <button class="btn btn-green" style="margin-top:12px;padding:8px 18px;font-size:14px" onclick="openCourse('Computer Vision')">Start Learning</button>
+    </div>
+    <div class="card">
+      <span class="tag">Automation</span>
+      <h3 style="margin:10px 0">Automation Bots</h3>
+      <p style="color:#aaa;font-size:14px">Daily kaam automate karo, bots se paise kamao.</p>
+      <button class="btn btn-green" style="margin-top:12px;padding:8px 18px;font-size:14px" onclick="openCourse('Automation Bots')">Start Learning</button>
+    </div>
+  </div>
+</div>
+<div id="page-bots" class="page">
+  <h2 style="font-size:30px;margin-bottom:20px">🤖 My Bots</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>WhatsApp Auto Bot</h3><p class="bot-status">● Active & Running</p>
+      <p style="color:#aaa;font-size:14px;margin-top:8px">Auto reply, order booking, customer support bot.</p>
+      <span class="tag">WhatsApp API</span><span class="tag">Node.js</span>
+      <div style="margin-top:12px"><a class="btn btn-blue" style="padding:8px 16px;font-size:13px" href="https://wa.me/923705579387?text=Bot demo chahiye" target="_blank">Try Demo</a></div>
+    </div>
+    <div class="card">
+      <h3>Telegram AI Bot</h3><p class="bot-status">● Active</p>
+      <p style="color:#aaa;font-size:14px;margin-top:8px">AI se jawab dene wala smart Telegram bot.</p>
+      <span class="tag">Python</span><span class="tag">AI</span>
+      <div style="margin-top:12px"><a class="btn btn-blue" style="padding:8px 16px;font-size:13px" href="https://t.me/Murshad1256" target="_blank">Open Telegram</a></div>
+    </div>
+    <div class="card">
+      <h3>Instagram Auto DM Bot</h3><p class="bot-status" style="color:#f59e0b">● Coming Soon</p>
+      <p style="color:#aaa;font-size:14px;margin-top:8px">Comments par auto reply + DM automation.</p>
+      <span class="tag">Automation</span>
+    </div>
+  </div>
+</div>
+<div id="page-about" class="page">
+  <h2 style="font-size:30px;margin-bottom:20px">👋 About Me</h2>
+  <div class="card">
+    <h3>I'm Zain - AI Teacher & Bot Developer</h3>
+    <p style="color:#aaa;margin-top:12px;line-height:1.6">Mai students ko AI, Python aur Automation sikhata hun. Mera mission hai Pakistan ke youth ko AI se earning karwana. Ab tak 500+ students seekh chuke hain.</p>
+    <div style="margin-top:18px">
+      <p>📧 itxzain1012@gmail.com</p>
+      <p>📱 WhatsApp: 03705579387</p>
+      <p>✈️ Telegram: @Murshad1256</p>
+    </div>
+  </div>
+  <div class="card">
+    <h3>📩 Contact Me</h3>
+    <input placeholder="Apna naam">
+    <input placeholder="Apna WhatsApp">
+    <input placeholder="Message likho">
+    <button class="btn btn-green" style="width:100%" onclick="alert('Message sent! Mai WhatsApp par reply karunga Zain ❤️')">Send Message</button>
+  </div>
+</div>
+<div class="bottom-nav">
+  <span id="b-home" class="active" onclick="showPage('home')">🏠 Home</span>
+  <span id="b-courses" onclick="showPage('courses')">📚 Courses</span>
+  <span id="b-bots" onclick="showPage('bots')">🤖 Bots</span>
+  <span id="b-about" onclick="showPage('about')">📞 Contact</span>
+</div>
+<script>
+function checkLogin(){
+  let u=localStorage.getItem('zain_user');
+  if(u){document.getElementById('loginScreen').style.display='none';}
+}
+checkLogin();
+function doLogin(){
+  let e=document.getElementById('email').value;
+  let p=document.getElementById('pass').value;
+  if(!e||!p){alert('Email aur Password likho');return}
+  localStorage.setItem('zain_user',e);
+  document.getElementById('loginScreen').style.display='none';
+  alert('Welcome '+e+'! Ab courses dekho ❤️');
+}
+function logout(){localStorage.removeItem('zain_user');location.reload()}
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-links a, .bottom-nav span').forEach(a=>a.classList.remove('active'));
+  let a=document.getElementById('nav-'+id); if(a) a.classList.add('active');
+  let b=document.getElementById('b-'+id); if(b) b.classList.add('active');
+  window.scrollTo(0,0);
+}
+function openCourse(name){alert(name+' ka content jald aayega! Filhal WhatsApp par message karo aur direct access lo.'); window.open('https://wa.me/923705579387?text='+encodeURIComponent(name+' course chahiye'),'_blank')}
+</script>
+</body>
+  </html>
